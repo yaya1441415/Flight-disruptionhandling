@@ -1,0 +1,18 @@
+*.swp
+__pycache__
+.pytest_cache
+.venv
+*.egg-info
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+
+# secrets / local env overrides — never commit real credentials
+.env
+*.pem
