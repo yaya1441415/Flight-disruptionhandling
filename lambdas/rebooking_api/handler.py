@@ -15,10 +15,10 @@ def handler(event, context):
     resp = table.get_item(Key={"pk": "breaker#fake-rebooking-api"})
     item = resp.get("Item")
 
-    state = "CLOSED" if item is None else item['state']
+    state = item.get("state", "CLOSED") if item else "CLOSED"
 
     if state == "OPEN":
-        elapsed = time.time()-item["opened_at"]>= COOLDOWN_SECONDS
+        elapsed = time.time() - float(item["opened_at"]) >= COOLDOWN_SECONDS
 
         if not elapsed:
             return {"statusCode":503, "body": "elpased timenot done yet"}

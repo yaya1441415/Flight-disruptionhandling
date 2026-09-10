@@ -24,7 +24,7 @@ class FlightDisruptionHandlingStack(Stack):
             runtime = _lambda.Runtime.PYTHON_3_12,
             handler = "handler.handler",
             code = _lambda.Code.from_asset("lambdas/fake_rebooking_api"),
-            environment = {"FAILURE_RATE": "0.5"},
+            environment = {"FAILURE_RATE": "0"},
         )
 
         fake_rebooking_url= fake_rebooking.add_function_url(auth_type=_lambda.FunctionUrlAuthType.NONE)
@@ -45,4 +45,6 @@ class FlightDisruptionHandlingStack(Stack):
 
 
         CfnOutput(self, "FakeRebookingApiUrl", value=fake_rebooking_url.url)
+        CfnOutput(self, "RebookingLambdaName", value=rebooking_lambda.function_name)
+
 
