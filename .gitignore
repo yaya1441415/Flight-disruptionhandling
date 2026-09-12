@@ -16,3 +16,7 @@ Thumbs.db
 # secrets / local env overrides — never commit real credentials
 .env
 *.pem
+
+# local test scratch files (aws lambda invoke output/input)
+out.json
+payload.json
